@@ -54,17 +54,17 @@ async def on_message(message):
     one_day_sales = r.json()["collection"]["stats"]["one_day_sales"]
     image_url = r.json()["collection"]["image_url"]
     icon_url = "https://pbs.twimg.com/profile_images/1484322477358534658/qhzNEION_400x400.jpg"
-    address = r.json()["collection"]["primary_asset_contracts"]["address"] #contract address for minting
-
+    address = r.json()["collection"]["primary_asset_contracts"][0]["address"] #contract address for minting
+  
 
     e = discord.Embed(title="OpenSea Collection Link", url="https://opensea.io/collection/" + collection, description=f"Current floor for {str(n)} is {str(floor)}Ξ\n")
     e.set_thumbnail(url = icon_url)
     e.set_image(url = image_url)
     e.set_footer(text = "you're welcome you filthy investor", icon_url = image_url)
     e.add_field(name = "nerd stats" , value = (f"__One hour volume:__ {int(one_hour_volume)}Ξ\n__One hour sales:__ {int(one_hour_sales)}Ξ\n__Six hour volume:__ {int(six_hour_volume)}Ξ\n__Six hour sales:__ {int((six_hour_sales))}Ξ\n__One day volume:__ {int(one_day_volume)}Ξ\n__One day sales:__ {int(one_day_sales)}Ξ"))
-    e.add_field(name = "Contract address" , value = f"Contract Address: {float(address)}")
+    e.add_field(name = "Contract address:" , value = address)
     await message.delete()
     await message.channel.send(embed=e)
 
+
 client.run(token)
-#sdfasdfasfd
