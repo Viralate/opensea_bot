@@ -13,7 +13,7 @@ load_dotenv()
 
 # logs into the discord bot
 
-token = os.getenv("DISCORD_TOKEN")
+token = "OTk5ODM2MjM5NjQ3NzQ4MjM3.GreR7Y._CGu4SzKudf0yaa8BJrc-9VuKUo9gusx0uDomI"
 intents = discord.Intents.default()
 intents.message_content = True
 
