@@ -19,6 +19,8 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
+
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -27,21 +29,33 @@ async def on_message(message):
     if not message.content.startswith("/"):
         return
 
-    parts = message.content.split(' ')
+    parts = message.content.split('  ')
+
     if len(parts) != 2:
-        await message.channel.send("USAGE: /floor <collection>")
+        await message.channel.send("USAGE: /floor <collection> or /commands")
         return
 
-    if parts[0] != '/floor':
-        await message.channel.send("Unknown command. Available commands are: /floor")
+    if parts[0] != '/floor' '/commands':
+        await message.channel.send("Unknown command. Available commands are: /floor, /commands")
         return
+
+
+    if parts [0] == '/commands':
+        await message.channel.send("Avaliable commands are /floor, /commands")
+        return
+
 
     collection = parts[1]
+
     r = requests.get("https://api.opensea.io/api/v1/collection/" + collection)
  
     if r.status_code != 200:
         await message.channel.send("Something went wrong")
         return
+    return
+
+    c = discord.Embed(title="Commands", description="current commands are: /floor /commands")
+
 
     #all data on the colleciton
     floor = r.json()["collection"]["stats"]["floor_price"]
